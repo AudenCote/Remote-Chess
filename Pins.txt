@@ -1,0 +1,3 @@
+Which GPIO pins do what
+
+Magnetic Detection:
