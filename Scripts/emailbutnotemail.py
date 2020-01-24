@@ -6,7 +6,7 @@ import email.mime.text
 
 SMTP_SERVER = 'imap.gmail.com'
 
-class Email:
+class EmailNotEmail:
 
 	def __init__(self, email, password):
 		self.email = email
@@ -47,7 +47,7 @@ class Email:
 			id_list = mail_ids.split()   
 			latest_email_id = int(id_list[-1])
 
-			print(mail.fetch(str(latest_email_id), '(RFC822)' )[-1][0][-1][-17:-2])
+			print(mail.fetch(str(latest_email_id), '(RFC822)' )[-1][0][-1][-10:-2]) #prints last 8 figures of email body, preceded by b' and followed by '
 
 
 		except Exception as e:
@@ -55,7 +55,8 @@ class Email:
 
 
 
-mymail = Email('audencotechess@gmail.com', 'Pa1n!nTheAspen')
-
-mymail.read_email()
-
+auden = EmailNotEmail('audencotechess@gmail.com', 'Pa1n!nTheAspen')
+jasper = EmailNotEmail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
+auden.send_email('jaspervosschess@gmail.com', '23456789')
+time.sleep(3)
+jasper.read_email()
