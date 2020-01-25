@@ -4,10 +4,6 @@ mm_per_step = 1
 boardHeight = 3	#mm, distance i-hook to i-hook
 boardWidth = 4	#mm, distance i-hook to i-hook
 
-motor1 = 'Motor 1'
-motor2 = 'Motor 2'
-motor3 = 'Motor 3'
-motor4 = 'Motor 4'
 def distance(coords_1, coords_2):
 	return math.sqrt((coords_1[0]-coords_2[0])**2+(coords_1[1]-coords_2[1])**2)
 
@@ -45,13 +41,13 @@ def plotSteps(startCoords, endCoords):
 
 	for i in range(mostSteps[3]*4):
 		if i%4 == 0:
-			steps.append([motor1, 0])
+			steps.append(['A1', 0])
 		if i%4 == 1:
-			steps.append([motor2, 0])
+			steps.append(['A2', 0])
 		if i%4 == 2:
-			steps.append([motor3, 0])
+			steps.append(['B1', 0])
 		if i%4 == 3:
-			steps.append([motor4, 0])
+			steps.append(['B2', 0])
 
 	for i in range(motor1_info[3]):
 		steps[4*round(i*mostSteps[3]/motor1_info[3])][1] = motor1_info[2]

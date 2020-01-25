@@ -6,8 +6,17 @@ Programming:
 Main for loop needs:
 	-Turn logic:
 		When not your turn, look for email
+			-move
 		When it is your turn, watch for magnetic change then send email
 	
 
 
 Physical:
+	cut plywood bases
+	mount motors on plywood
+	eyehooks
+	turn spinnies
+	
+
+switch wires on motors
+get all motors running
