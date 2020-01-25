@@ -3,6 +3,7 @@ import time
 import imaplib
 import email
 import email.mime.text
+import poplib
 
 SMTP_SERVER = 'imap.gmail.com'
 
@@ -54,9 +55,10 @@ class EmailNotEmail:
 			print(str(e))
 
 
-
 auden = EmailNotEmail('audencotechess@gmail.com', 'Pa1n!nTheAspen')
 jasper = EmailNotEmail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 auden.send_email('jaspervosschess@gmail.com', '23456789')
 time.sleep(3)
+jasper.read_email()
+jasper.clear_inbox()
 jasper.read_email()
