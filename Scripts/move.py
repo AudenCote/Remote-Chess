@@ -4,11 +4,6 @@ mm_per_step = .5
 boardHeight = 500	#mm, distance i-hook to i-hook
 boardWidth = 1000	#mm, distance i-hook to i-hook
 
-motor1 = motorClass.Motor(8, 9, 10, 11)
-motor2 = motorClass.Motor(8, 9, 10, 11)
-motor3 = motorClass.Motor(8, 9, 10, 11)
-motor4 = motorClass.Motor(8, 9, 10, 11)
-
 def distance(coords_1, coords_2):
 	return math.sqrt((coords_1[0]-coords_2[0])**2+(coords_1[1]-coords_2[1])**2)
 
