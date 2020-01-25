@@ -1,1 +1,13 @@
 The Plan!
+
+Cosas que hacer
+
+Programming:
+Main for loop needs:
+	-Turn logic:
+		When not your turn, look for email
+		When it is your turn, watch for magnetic change then send email
+	
+
+
+Physical:
