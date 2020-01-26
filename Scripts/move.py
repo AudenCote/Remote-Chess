@@ -1,8 +1,10 @@
 import time, math
 
-mm_per_step = 1
+mm_per_step = 0.543495
 boardHeight = 3	#mm, distance i-hook to i-hook
 boardWidth = 4	#mm, distance i-hook to i-hook
+platformWidth = 45
+platformHeight = 45
 
 def distance(coords_1, coords_2):
 	return math.sqrt((coords_1[0]-coords_2[0])**2+(coords_1[1]-coords_2[1])**2)
@@ -13,10 +15,10 @@ def plotSteps(startCoords, endCoords):
 	#[1] = mm traveled
 	#[2] = direction of travel
 	#[3] = steps traveled
-	motor1_info = [1, distance([0, 0], endCoords) - distance([0, 0], startCoords), 0, 0]
-	motor2_info = [2, distance([0, boardHeight], endCoords) - distance([0, boardHeight], startCoords), 0, 0]
-	motor3_info = [3, distance([boardWidth, boardHeight], endCoords) - distance([boardWidth, boardHeight], startCoords), 0, 0]
-	motor4_info = [4, distance([boardWidth, 0], endCoords) - distance([boardWidth, 0], startCoords), 0, 0]
+	motor1_info = [1, distance([0, 0], [endCoords[0]-platformWidth/2, endCoord[1]-platformHeight/2]) - distance([0, 0], [startCoords[0]-platformWidth/2, startCoords[1]-platformHeight/2]), 0, 0]
+	motor2_info = [2, distance([0, boardHeight], [endCoords[0]-platformWidth/2, endCoord[1]+platformHeight/2]) - distance([0, boardHeight], [startCoords[0]-platformWidth/2, startCoords[1]+platformHeight/2]), 0, 0]
+	motor3_info = [3, distance([boardWidth, boardHeight], [endCoords[0]+platformWidth/2, endCoord[1]+platformHeight/2]) - distance([boardWidth, boardHeight], [startCoords[0]+platformWidth/2, startCoords[1]+platformHeight/2]), 0, 0]
+	motor4_info = [4, distance([boardWidth, 0], [endCoords[0]+platformWidth/2, endCoord[1]-platformHeight/2]) - distance([boardWidth, 0], [startCoords[0]+platformWidth/2, startCoords[1]-platformHeight/2]), 0, 0]
 
 	motor1_info[2] = abs(motor1_info[1])/motor1_info[1]
 	motor2_info[2] = abs(motor2_info[1])/motor2_info[1]
