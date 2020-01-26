@@ -12,13 +12,13 @@ def distance(coords_1, coords_2):
 def plotSteps(startCoords, endCoords):
 
 	#[0] = motor id
-	#[1] = mm traveled
+	#[1] = mm to travel
 	#[2] = direction of travel
 	#[3] = steps traveled
-	motor1_info = [1, distance([0, 0], [endCoords[0]-platformWidth/2, endCoord[1]-platformHeight/2]) - distance([0, 0], [startCoords[0]-platformWidth/2, startCoords[1]-platformHeight/2]), 0, 0]
-	motor2_info = [2, distance([0, boardHeight], [endCoords[0]-platformWidth/2, endCoord[1]+platformHeight/2]) - distance([0, boardHeight], [startCoords[0]-platformWidth/2, startCoords[1]+platformHeight/2]), 0, 0]
-	motor3_info = [3, distance([boardWidth, boardHeight], [endCoords[0]+platformWidth/2, endCoord[1]+platformHeight/2]) - distance([boardWidth, boardHeight], [startCoords[0]+platformWidth/2, startCoords[1]+platformHeight/2]), 0, 0]
-	motor4_info = [4, distance([boardWidth, 0], [endCoords[0]+platformWidth/2, endCoord[1]-platformHeight/2]) - distance([boardWidth, 0], [startCoords[0]+platformWidth/2, startCoords[1]-platformHeight/2]), 0, 0]
+	motor1_info = [1, distance([0, 0], [endCoords[0]-platformWidth/2, endCoords[1]-platformHeight/2]) - distance([0, 0], [startCoords[0]-platformWidth/2, startCoords[1]-platformHeight/2]), 0, 0]
+	motor2_info = [2, distance([0, boardHeight], [endCoords[0]-platformWidth/2, endCoords[1]+platformHeight/2]) - distance([0, boardHeight], [startCoords[0]-platformWidth/2, startCoords[1]+platformHeight/2]), 0, 0]
+	motor3_info = [3, distance([boardWidth, boardHeight], [endCoords[0]+platformWidth/2, endCoords[1]+platformHeight/2]) - distance([boardWidth, boardHeight], [startCoords[0]+platformWidth/2, startCoords[1]+platformHeight/2]), 0, 0]
+	motor4_info = [4, distance([boardWidth, 0], [endCoords[0]+platformWidth/2, endCoords[1]-platformHeight/2]) - distance([boardWidth, 0], [startCoords[0]+platformWidth/2, startCoords[1]-platformHeight/2]), 0, 0]
 
 	motor1_info[2] = abs(motor1_info[1])/motor1_info[1]
 	motor2_info[2] = abs(motor2_info[1])/motor2_info[1]
@@ -60,4 +60,41 @@ def plotSteps(startCoords, endCoords):
 	for i in range(motor4_info[3]):
 		steps[3+4*round(i*mostSteps[3]/motor4_info[3])][1] = motor4_info[2]
 
-	return steps
+	return [steps, motor1_info, motor2_info, motor3_info, motor4_info]
+
+def fullPlot(startCoords, endCoords, numBreaks):
+	subPoints = []
+	x_dist = endCoords[0]-startCoords[0]
+	y_dist = endCoords[1]-startCoords[1]
+	steps_plot = []
+	for i in range(numBreaks):
+		subPoints.append([i*x_dist/numBreaks + startCoords[0], i*y_dist/numBreaks + startCoords[1]])
+	next_start_x = startCoords[0]
+	next_start_y = startCoords[1]
+
+	steps_traveled1 = 0
+	steps_traveled2 = 0
+	steps_traveled3 = 0
+	steps_traveled4 = 0
+
+	r1 = distance([0, 0], startCoords)
+	r2 = distance([0, boardHeight], startCoords)
+	r3 = distance([boardWidth, boardHeight], startCoords)
+
+	for p in range(numBreaks-1):
+		plot = plotSteps([next_start_x, next_start_y], subPoints[i+1])
+
+		steps_traveled1 += plot[1][3]*plot[1][2]
+		steps_traveled2 += plot[2][3]*plot[2][2]
+		steps_traveled3 += plot[3][3]*plot[3][2]
+
+		steps_plot.append(plot[0])
+
+		r1 += steps_traveled1
+		r2 += steps_traveled2
+		r3 += steps_traveled3
+
+		next_start_x = (r3**2-r2**2-boardWidth**2)/(-2*boardWidth)#these numbers were gotten by solving the equations of circle 1, 2, and 3
+		next_start_y = math.sqrt(r1**2-x**2) #where is it actually, not rounded?
+
+	return steps_plot

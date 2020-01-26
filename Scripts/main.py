@@ -12,7 +12,7 @@ b_motors = Motor('B')
 # for i in range(8, 22):
 #     gpio.setup(pins[i], gpio.IN)
 
-steps = plotSteps([100, 100], [400, 400])
+steps = plotSteps([200, 200], [200, 400])
 for steps in steps:
 	if s[0] == 'A1':
 		a_motors.move_step(i[1], 0)
