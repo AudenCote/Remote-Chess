@@ -1,6 +1,6 @@
 import time
 import motorClass
-import move
+import movingon
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 turn = True  # True means local turn, False means turn of other board
@@ -14,7 +14,7 @@ b_motors = motorClass.Motor('B')
 # for i in range(8, 22):
 #     gpio.setup(pins[i], gpio.IN)
 
-steps = move.fullPlot([200, 200], [200, 210], 10)
+steps = movingon.plotSteps([200, 200], [200, 210], 10)
 ##for s in range(len(steps)):
 ##    print(steps[s], end='   ')
 ##    if s%4 == 3:
