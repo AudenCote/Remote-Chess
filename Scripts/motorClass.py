@@ -1,6 +1,6 @@
 import time
 import math
-from port_expander_config import MCP
+from PEC import MCP
 
 mcp = MCP()
 

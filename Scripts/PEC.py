@@ -1,5 +1,7 @@
 import smbus
 
+#port expander config library
+
 class MCP:
 
     def __init__(self):
