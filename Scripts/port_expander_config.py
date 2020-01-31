@@ -40,10 +40,6 @@ class MCP:
             print('Something went wrong! Parsed with error message: ', e)
 
 
-mcp = MCP()
-
-mcp.output('A00000100')
-mcp.output('B00010000')
 
 
 

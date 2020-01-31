@@ -1,6 +1,7 @@
-import time
+import time, math
 import motorClass
 import movingon
+
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 turn = True  # True means local turn, False means turn of other board
@@ -8,33 +9,100 @@ turn = True  # True means local turn, False means turn of other board
 a_motors = motorClass.Motor('A')
 b_motors = motorClass.Motor('B')
 
-# pins = [] #first 8 are output pins, running up side of board, next 14 are inputs, running along bottom of board
-# for i in range(0, 8):
-#     gpio.setup(pins[i], gpio.OUT)
-# for i in range(8, 22):
-#     gpio.setup(pins[i], gpio.IN)
+def home():
+    a_motors.off1()
+    b_motors.off0()
+    b_motors.off1()
+    for i in range(2000):
+        a_motors.move_step0(-1)
+        a_motors.move_step1(-1)
+        b_motors.move_step0(-1)
+        b_motors.move_step1(-1)
+        time.sleep(.0001)
+        a_motors.off1()
+        b_motors.off0()
+        b_motors.off1()
+        time.sleep(.001)
+        
+def move(start, end):
+    steps = movingon.plotSteps(start, end, 200)
+    for s in steps[0]:
+        if s[0] == 'A0':
+            a_motors.move_step0(s[1])
+        elif s[0] == 'A1':
+            a_motors.move_step1(s[1])
+        if s[0] == 'B0':
+            b_motors.move_step0(-s[1])
+        elif s[0] == 'B1':
+            b_motors.move_step1(s[1])
+        #time.sleep(.0001)
+    return [steps[1], steps[2]]
 
-steps = movingon.plotSteps([200, 200], [200, 210], 10)
-##for s in range(len(steps)):
-##    print(steps[s], end='   ')
-##    if s%4 == 3:
-##        print('')
 
-for s in steps:
-    if s[0] == 'A1':
-        a_motors.move_step(s[1], 0)
-    elif s[0] == 'A2':
-        a_motors.move_step(s[1], 1)
-    if s[0] == 'B1':
-        b_motors.move_step(s[1], 0)
-    elif s[0] == 'B2':
-        b_motors.move_step(s[1], 1)
-    time.sleep(.005)
+coords = [420, 350]
 
-# while True:         #main loop
-#      if turn:
-#          #sensing
-#          for i in range(0, 8):
-#              gpio.output(pins[i], gpio.HIGH)
-#              for j in range(8, 22):
-#                  if gpio.input(pins[j]) == gpio.HIGH:
+for i in range(5):
+    coords = move(coords, [140, 200])
+    time.sleep(1)
+    coords = move(coords, [420, 350])
+    time.sleep(1)
+
+
+
+pins = [7, 17, 13, 15, 10, 9, 11, 5, 6, 13, 19, 26, 21, 20, 16, 12, 7, 8, 25, 24, 23, 18] #first 8 are output pins, running up side of board, next 14 are inputs, running along bottom of board
+for i in range(0, 8):
+     gpio.setup(pins[i], gpio.OUT)
+for i in range(8, 22):
+     gpio.setup(pins[i], gpio.IN)
+
+while True:
+     
+     new_email = ene.read_email()
+     if new_email != old_email:
+          turn = True
+
+     old_email = new_email
+     
+     if turn:
+          for i in range(0, 8):
+               gpio.output(pins[i], gpio.HIGH)
+                  for j in range(8, 22):
+                     if gpio.input(pins[j]) == gpio.HIGH:
+                         lists.squares[i][j-8] = True
+
+          #code below has not been tested
+
+          #initialize email info with team number
+          email_info = [0]
+          
+          #checking to see if there is a piece that has been moved
+          temp_pieces = lists.pieces
+          for i, piece in enumerate(lists.pieces)
+               if lists.squares[piece[1]][piece[2]] == True:
+                    temp_pieces.pop(i)
+
+          #restrict this later so that you cannot move more than one piece
+          temp_squares = lists.squares
+          if len(temp_pieces) == 1:
+               moved_piece = temp_pieces[0]
+               #appending start position to email info
+               email_info.append(temp_pieces[1]); email_info.append(temp_pieces[2])
+               #mark the square that is no longer occupied as false
+               lists.squares[moved_piece[1]][moved_piece[2]] = False
+
+               for i, row in enumerate(lists.squares):
+                    for j, col in enumerate(row):
+                         #comparing the old squares to the updated squares, which should only have one difference. to be confirmed. 
+                         if temp_squares[i][j] != lists.squares[i][j]:
+                              #now change the position values of the moved piece
+                              for piece in lists.pieces:
+                                   if piece[0] == moved_piece[0]:
+                                        piece[1] == i; piece[1] == j
+                                        email_info.append(i); email_info.append(j); email_info.append(piece[0])
+
+                                        
+                                        
+               email_msg = EmailNotEmail.email_to_bin(email_info)
+               ene.send_email('audencotechess@gmail.com', email_msg)
+               turn = False
+
