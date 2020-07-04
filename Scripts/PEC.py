@@ -10,10 +10,13 @@ class MCP:
         self.DEVICE = 0x20
         IODIRA = 0x00
         IODIRB = 0x01
-
-        self.bus.write_byte_data(self.DEVICE, IODIRA, 0x00)
-        self.bus.write_byte_data(self.DEVICE, IODIRB, 0x00)    
-
+        
+        try:
+            self.bus.write_byte_data(self.DEVICE, IODIRA, 0x00)
+            self.bus.write_byte_data(self.DEVICE, IODIRB, 0x00)    
+        except:
+            print("One of the wires is loose, dumbass.")
+            exit()
 
     def output(self, s):
         bin = s[1:]

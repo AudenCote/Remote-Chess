@@ -1,6 +1,7 @@
 import math
 
 mm_per_step = .2717475
+
 boardWidth = 516.5
 boardHeight = 426.5
 

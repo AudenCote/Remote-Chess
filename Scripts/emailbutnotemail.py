@@ -54,11 +54,34 @@ class EmailNotEmail:
 		except Exception as e:
 			print(str(e))
 
+	@staticmethod
+	def email_a_la_bin(email_info):
+                
+                #This function has not been tested
+                
+                z_string = "00000000"
+                bins = [z_string[:8-len(bin(input_val)[2:])] + bin(input_val)[2:] for input_val in email_info[:-1]]
 
-auden = EmailNotEmail('audencotechess@gmail.com', 'Pa1n!nTheAspen')
-jasper = EmailNotEmail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
-auden.send_email('jaspervosschess@gmail.com', '23456789')
-time.sleep(3)
-jasper.read_email()
-jasper.clear_inbox()
-jasper.read_email()
+                return 'cccc' + ''.join(bins) + email_info[-1] + 'cccc'
+
+        @staticmethod
+        def bin_a_la_email(bin_string):
+
+                #this function has not been tested
+
+                bin_string = list(bin_string)
+                i = len(bin_string)
+                while i > 0:
+                        if bin_string[i] == 'c':
+                                bin_string.pop(i)
+                        i -= 1
+                bin_string = ''.join(bin_string)
+
+                email_info = []
+                for i in range(5):
+                        email_info.append(int(bin_string[8*i:8+8*i], 2))
+
+                email_info.append(bin_string([-3:]) #make sure this indexing is right
+
+
+

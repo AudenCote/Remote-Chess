@@ -4,7 +4,6 @@ from PEC import MCP
 
 mcp = MCP()
 
-
 class Motor:
 
     def __init__(self, reg):
@@ -61,36 +60,7 @@ class Motor:
         for i in self.output:
             out = out + i
         mcp.output(out)
-        
-    def move_step0_weak(self, direction):
-        self.curr_step0 -= 2*direction
-        if self.curr_step0 > 7:
-            self.curr_step0 = 0
-        if self.curr_step0 < 0:
-            self.curr_step0 = 7
 
-        self.curr_step0 = int(self.curr_step0)
-        out = ''
-        for i in range(4):
-            self.output[i+1] = self.step_seq[self.curr_step0][i]
-        for i in self.output:
-            out = out + i
-        mcp.output(out)
-                
-    def move_step1_weak(self, direction):
-        self.curr_step1 += 2*direction
-        if self.curr_step1 > 7:
-            self.curr_step1 = 0
-        if self.curr_step1 < 0:
-            self.curr_step1 = 7
-
-        self.curr_step1 = int(self.curr_step1)
-        out = ''
-        for i in range(4):
-            self.output[i+5] = self.step_seq[self.curr_step1][i]
-        for i in self.output:
-            out = out + i
-        mcp.output(out)
 
     def off0(self):
         out = ''
@@ -110,9 +80,9 @@ class Motor:
 ##a_motors = Motor('A')
 ##b_motors = Motor('B')
 ##
-##for i in range(50):
-##    a_motors.move_step0(1) #in
-##    #a_motors.move_step1(1) #in
-##    #b_motors.move_step0(1) #out
-##    #b_motors.move_step1(1) #in
-##    time.sleep(.01)
+##for i in range(6):
+##    a_motors.move_step0(-1) #in
+##    a_motors.move_step1(-1) #in
+##    b_motors.move_step0(1) #out
+##    b_motors.move_step1(-1) #in
+##    time.sleep(.5)
