@@ -1,9 +1,9 @@
 import math, motorClass, time
 
-mm_per_step_0 = .2685
-mm_per_step_1 = .263
-mm_per_step_2 = .266
-mm_per_step_3 = .265
+mm_per_step_0 = .263
+mm_per_step_1 = .265
+mm_per_step_2 = .26
+mm_per_step_3 = .262
 
 boardWidth = 516
 boardHeight = 425
@@ -56,7 +56,7 @@ def move(radii, end):
             b_motors.move_step0(-s[1])
         elif s[0] == 'B1':
             b_motors.move_step1(s[1])
-        time.sleep(.005)
+        time.sleep(.0002)
     return steps[1]
 
 def plotSteps(radii, endCoords, numBreaks):
