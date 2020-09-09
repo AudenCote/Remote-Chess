@@ -1,9 +1,6 @@
 import RPi.GPIO as gpio
-import time
 
 control_pin = 22
-
-
 gpio.setmode(gpio.BCM)
 gpio.setup(control_pin, gpio.OUT)
 
