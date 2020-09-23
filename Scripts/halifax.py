@@ -21,13 +21,15 @@ for i in range(len(outPins)):
 while True:
     for i in range(len(outPins)):
         gpio.output(outPins[i], 1)
+
         for j in range(len(inPins)):
             if gpio.input(inPins[j]) == gpio.LOW:
-                status[i][j] = 1
-            else:
                 status[i][j] = 0
+            else:
+                status[i][j] = 1
         gpio.output(outPins[i], 0)
         time.sleep(.01)
     for s in status:
         print(s)
+    print('\n\n\n\n\n')
     time.sleep(3)
