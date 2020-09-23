@@ -1,10 +1,5 @@
 import RPi.GPIO as gpio
 import time
-from tkinter import *
-
-tk = Tk()
-canvas = Canvas(tk, width=800, height=800, background='black')
-canvas.pack()
 
 
 outPins = [21, 20, 16, 12, 7, 8, 25, 25]
