@@ -30,4 +30,4 @@ while True:
         time.sleep(.01)
     for s in status:
         print(s)
-    sleep(3)
+    time.sleep(3)
