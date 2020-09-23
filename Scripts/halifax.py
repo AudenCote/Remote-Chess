@@ -16,22 +16,22 @@ for i in outPins:
 for i in inPins:
     gpio.setup(i, gpio.IN)
 
-status = []
-template = []
-for i in range(len(inPins)):
-    template.append(0)
-for i in range(len(outPins)):
-    status.append(template)
-
-while True:
+def scan():
+    status = []
+    template = []
+    for i in range(len(inPins)):
+        template.append(0)
     for i in range(len(outPins)):
-        gpio.output(outPins[i], 1)
-        for j in range(len(inPins)):
-            if gpio.input(inPins[j]) == gpio.LOW:
-                status[i][j] = 1
-            else:
-                status[i][j] = 0
-        gpio.output(outPins[i], 0)
-        time.sleep(.01)
-    for s in status:
-        print(s)
+        status.append(template)
+
+    while True:
+        for i in range(len(outPins)):
+            gpio.output(outPins[i], 1)
+            for j in range(len(inPins)):
+                if gpio.input(inPins[j]) == gpio.LOW:
+                    status[i][j] = 1
+                else:
+                    status[i][j] = 0
+            gpio.output(outPins[i], 0)
+            time.sleep(.01)
+        return(status)
