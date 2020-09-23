@@ -31,5 +31,5 @@ while True:
         time.sleep(.01)
     for s in status:
         print(s)
-    print('\n\n\n\n\n')
+    print('\n\n')
     time.sleep(3)
