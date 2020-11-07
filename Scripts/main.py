@@ -4,11 +4,12 @@ import time, math, magnet
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 
+t=.1
 for i in range(10):
 	magnet.off()
-	time.sleep(1)
+	time.sleep(t)
 	magnet.on()
-	time.sleep(1)
+	time.sleep(t)
 	print(i)
 
 
