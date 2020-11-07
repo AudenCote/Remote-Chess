@@ -4,15 +4,7 @@ import move
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 
-y=198
-radii = move.get_radii([int(input("Starting at?")), y])
-target = 200
-while True:
-    string = input("")
-    target = int(string)
-    magnet.on()
-    radii = move.move(radii, [target, y])
-    magnet.off()
+magnet.off()
 
 
 ###pins = [7, 17, 13, 15, 10, 9, 11, 5, 6, 13, 19, 26, 21, 20, 16, 12, 7, 8, 25, 24, 23, 18] #first 8 are output pins, running up side of board, next 14 are inputs, running along bottom of board

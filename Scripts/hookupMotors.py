@@ -1,6 +1,6 @@
 import move
 
-for i in range(0, 3):
+for i in range(0, 4):
 	move.off(i)
 
 while True:
