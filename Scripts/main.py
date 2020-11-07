@@ -4,7 +4,7 @@ import move
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 
-for i in range(10)
+for i in range(10):
 	magnet.off()
 	time.sleep(1)
 	magnet.on()
