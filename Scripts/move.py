@@ -37,7 +37,7 @@ def manual(motor, steps):
             time.sleep(.005)
     if motor == 2:
         for i in range(abs(steps)):
-            b_motors.move_step0(-abs(steps)/steps)
+            b_motors.move_step0(abs(steps)/steps)   #was -abs
             time.sleep(.005)
     if motor == 3:
         for i in range(abs(steps)):
@@ -53,7 +53,7 @@ def move(radii, end):
         elif s[0] == 'A1':
             a_motors.move_step1(s[1])
         elif s[0] == 'B0':
-            b_motors.move_step0(-s[1])
+            b_motors.move_step0(s[1])           #was -s[1]
         elif s[0] == 'B1':
             b_motors.move_step1(s[1])
         time.sleep(.0002)
