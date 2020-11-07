@@ -1,4 +1,3 @@
-from PEC import MPC
 import move
 
 for i in range(0, 3):
