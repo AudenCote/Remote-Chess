@@ -1,6 +1,6 @@
 import RPi.GPIO as gpio
 
-control_pin = 22
+control_pin = 4
 gpio.setmode(gpio.BCM)
 gpio.setup(control_pin, gpio.OUT)
 
