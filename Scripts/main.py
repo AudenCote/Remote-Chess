@@ -1,16 +1,15 @@
 import time, math, magnet
-#import move
+import move
 #from emailbutnotemail import emailbutnotemail
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 
-t=.1
-for i in range(10):
-	magnet.off()
-	time.sleep(t)
-	magnet.on()
-	time.sleep(t)
-	print(i)
+while True:
+	intext = input("Steps: ")
+	if intext == "":
+		break
+	else:
+		move.manual(0, int(intext))
 
 
 ###pins = [7, 17, 13, 15, 10, 9, 11, 5, 6, 13, 19, 26, 21, 20, 16, 12, 7, 8, 25, 24, 23, 18] #first 8 are output pins, running up side of board, next 14 are inputs, running along bottom of board
