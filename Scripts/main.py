@@ -4,7 +4,11 @@ import move
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 
-magnet.off()
+for i in range(10)
+	magnet.off()
+	time.sleep(1)
+	magnet.on()
+	time.sleep(1)
 
 
 ###pins = [7, 17, 13, 15, 10, 9, 11, 5, 6, 13, 19, 26, 21, 20, 16, 12, 7, 8, 25, 24, 23, 18] #first 8 are output pins, running up side of board, next 14 are inputs, running along bottom of board
