@@ -11,4 +11,4 @@ while True:
 	if inputtext == "":
 		break
 	else:
-		mcp.out(inputtext)
+		mcp.output(inputtext)
