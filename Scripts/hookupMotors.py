@@ -12,4 +12,4 @@ while True:
 	if inputtext == "":
 		break
 	else:
-		move.manual(inputtext, inputsteps)
+		move.manual(int(inputtext), int(inputsteps))
