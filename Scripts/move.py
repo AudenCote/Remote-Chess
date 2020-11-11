@@ -31,7 +31,6 @@ def manual(motor, steps):
         for i in range(abs(steps)):
             a_motors.move_step0(abs(steps)/steps)
             time.sleep(.005)
-            print('tick')
     if motor == 1:
         for i in range(abs(steps)):
             a_motors.move_step1(abs(steps)/steps)
