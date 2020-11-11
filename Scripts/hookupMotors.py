@@ -7,8 +7,9 @@ for i in range(0, 4):
 mcp = MCP()
 
 while True:
-	inputtext = input("Custom output (enter to break): ")
+	inputtext = input("motor: ")
+	inputsteps = input("steps: ")
 	if inputtext == "":
 		break
 	else:
-		mcp.output(inputtext)
+		move.manual(inputtext, inputsteps)
