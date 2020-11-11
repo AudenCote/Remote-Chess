@@ -4,7 +4,7 @@ import move
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 
-radii = [int(input("starting x: ")), int(input("starting y: "))]
+radii = [get_radii(int(input("starting x: ")), int(input("starting y: ")))]
 while True:
 	radii = move.move(radii, [int(input("x: ")), int(input("y: "))])
 
