@@ -5,8 +5,8 @@ mm_per_step_1 = .265
 mm_per_step_2 = .26
 mm_per_step_3 = .262
 
-boardWidth = 516
-boardHeight = 425
+boardWidth = 616
+boardHeight = 493
 
 a_motors = motorClass.Motor('A')
 b_motors = motorClass.Motor('B')

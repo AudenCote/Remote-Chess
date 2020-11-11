@@ -4,12 +4,9 @@ import move
 
 #ene = emailbutnotemail('jaspervosschess@gmail.com', 'Pa1n!nTheAspen')
 
+radii = [int(input("starting x: ")), int(input("starting y: "))]
 while True:
-	intext = input("Steps: ")
-	if intext == "":
-		break
-	else:
-		move.manual(0, int(intext))
+	radii = move.move(radii, [int(input("x: ")), int(input("y: "))])
 
 
 ###pins = [7, 17, 13, 15, 10, 9, 11, 5, 6, 13, 19, 26, 21, 20, 16, 12, 7, 8, 25, 24, 23, 18] #first 8 are output pins, running up side of board, next 14 are inputs, running along bottom of board
