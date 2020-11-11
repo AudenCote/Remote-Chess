@@ -30,7 +30,7 @@ def manual(motor, steps):
     if motor == 0:
         for i in range(abs(steps)):
             a_motors.move_step0(abs(steps)/steps)
-            time.sleep(1)
+            time.sleep(.1)
     if motor == 1:
         for i in range(abs(steps)):
             a_motors.move_step1(abs(steps)/steps)
